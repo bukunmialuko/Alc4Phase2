@@ -33,6 +33,7 @@ public class DealActivity extends AppCompatActivity {
     private EditText txtDescription;
     private EditText txtPrice;
     private ImageView imageView;
+    private Button btnImage;
 
     private static final int PICTURE_RESULT = 42;
 
@@ -67,7 +68,7 @@ public class DealActivity extends AppCompatActivity {
         txtPrice.setText(deal.getPrice());
         showImage(deal.getImageUrl());
 
-        Button btnImage = findViewById(R.id.btnImage);
+         btnImage = findViewById(R.id.btnImage);
         btnImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -156,6 +157,7 @@ public class DealActivity extends AppCompatActivity {
         txtTitle.setEnabled(isEnabled);
         txtDescription.setEnabled(isEnabled);
         txtPrice.setEnabled(isEnabled);
+        btnImage.setEnabled(isEnabled);
 
     }
 
