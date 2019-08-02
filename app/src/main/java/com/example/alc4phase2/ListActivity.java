@@ -14,11 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.ArrayList;
 
 public class ListActivity extends AppCompatActivity {
 
@@ -26,7 +21,7 @@ public class ListActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_deal);
+        setContentView(R.layout.activity_list);
      }
 
 
@@ -34,6 +29,14 @@ public class ListActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.list_activity_menu, menu);
+        MenuItem insertMenu = menu.findItem(R.id.insert_menu);
+        if (FirebaseUtil.isAdmin == true){
+            insertMenu.setVisible(true);
+        }else {
+            insertMenu.setVisible(false);
+        }
+
+
         return true;
     }
 
@@ -53,6 +56,7 @@ public class ListActivity extends AppCompatActivity {
                                 FirebaseUtil.attachListener();
                             }
                         });
+                FirebaseUtil.detachListener();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -78,5 +82,10 @@ public class ListActivity extends AppCompatActivity {
         rvDeals.setLayoutManager(new LinearLayoutManager(this, RecyclerView.VERTICAL, false));
         FirebaseUtil.attachListener();
 
+    }
+
+
+    public void showMenu(){
+        invalidateOptionsMenu();
     }
 }
