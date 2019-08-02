@@ -174,8 +174,6 @@ public class DealActivity extends AppCompatActivity {
                     taskSnapshot.getStorage().getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
                         @Override
                         public void onComplete(@NonNull Task<Uri> task) {
-//                            changeProfilePic(String.valueOf(task.getResult()));//gives image or file string url
-
                             String downloadUri = String.valueOf(task.getResult());
                             Log.d("OBKM", downloadUri);
                             deal.setImageUrl(downloadUri);
@@ -184,28 +182,6 @@ public class DealActivity extends AppCompatActivity {
                     });
                 }
             });
-
-
-//            ref.putFile(imageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                    String downloadUri = taskSnapshot.getMetadata().getReference().getDownloadUrl().toString();
-//                    Log.d("OBKM", downloadUri);
-//                    deal.setImageUrl(downloadUri);
-//                    showImage(downloadUri);
-//                }
-//            });
-
-
-//            ref.putFile(imageUri).addOnSuccessListener(this, new OnSuccessListener<UploadTask.TaskSnapshot>() {
-//                @Override
-//                public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-//                    String url = String.valueOf(taskSnapshot.getUploadSessionUri());
-//                    Log.d("OBKM", url);
-//                    deal.setImageUrl(url);
-//                    showImage(url);
-//                }
-//            });
 
         }
     }
