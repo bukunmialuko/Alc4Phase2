@@ -2,7 +2,6 @@ package com.example.alc4phase2;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,18 +29,17 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
     private ChildEventListener mChildListener;
 
     public DealAdapter() {
-//        FirebaseUtil.openFbReference("traveldeals", listActivity );
         mFirebaseDatabase = FirebaseUtil.mFirebaseDatabase;
-        mDatabaseReference =FirebaseUtil.mDatabaseReference;
+        mDatabaseReference = FirebaseUtil.mDatabaseReference;
         deals = FirebaseUtil.mDeals;
         mChildListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
 
-                TravelDeal  td = dataSnapshot.getValue(TravelDeal.class);
+                TravelDeal td = dataSnapshot.getValue(TravelDeal.class);
                 td.setId(dataSnapshot.getKey());
                 deals.add(td);
-                notifyItemInserted(deals.size()-1);
+                notifyItemInserted(deals.size() - 1);
             }
 
             @Override
@@ -90,12 +88,13 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder
-    implements View.OnClickListener{
+            implements View.OnClickListener {
 
         TextView tvTitle;
         TextView tvDescription;
         TextView tvPrice;
         ImageView imageDeal;
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTitle = itemView.findViewById(R.id.tvTitle);
@@ -105,11 +104,11 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
             itemView.setOnClickListener(this);
         }
 
-        public void bind(TravelDeal deal){
+        public void bind(TravelDeal deal) {
             tvTitle.setText(deal.getTitle());
             tvDescription.setText(deal.getDescription());
             tvPrice.setText(deal.getPrice());
-            showImage(deal.getImageUrl() );
+            showImage(deal.getImageUrl());
 
         }
 
@@ -122,8 +121,8 @@ public class DealAdapter extends RecyclerView.Adapter<DealAdapter.ViewHolder> {
             v.getContext().startActivity(intent);
         }
 
-        private void showImage(String url){
-            if (url !=null && url.isEmpty() ==false){
+        private void showImage(String url) {
+            if (url != null && url.isEmpty() == false) {
                 Picasso.get()
                         .load(url)
                         .resize(160, 160)
